@@ -8,6 +8,7 @@ import com.adc2018.bpmhw3.api.entity.list.FriendList;
 import com.adc2018.bpmhw3.api.entity.list.TopicList;
 import com.adc2018.bpmhw3.api.entity.list.UserList;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -73,8 +74,8 @@ public interface BPMAPI {
     @RequestMapping(method = RequestMethod.POST, value = "/Topic")
     public Topic postTopic(@RequestBody Topic topic);
 
-    @RequestMapping(method = RequestMethod.POST, value = "/Topic/{id}")
-    public Friend postFileToTopic(@RequestParam("file") MultipartFile file);
+    @RequestMapping(method = RequestMethod.POST, value = "/Topic/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public String postFileToTopic(@PathVariable("id") String id, @RequestParam("") MultipartFile file);
 
 
 
@@ -91,5 +92,5 @@ public interface BPMAPI {
     @RequestMapping(method = RequestMethod.POST, value = "/Friend")
     public Friend postFriend(@RequestBody Friend Friend);
 
-    
+
 }
