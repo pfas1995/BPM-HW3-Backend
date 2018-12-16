@@ -3,6 +3,7 @@ package com.adc2018.bpmhw3.api.entity.list;
 import com.adc2018.bpmhw3.api.entity.Friend;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class FriendList {
@@ -12,6 +13,9 @@ public class FriendList {
 
 
     public List<Friend> getFriends() {
+        if(friends == null) {
+            friends = new ArrayList<>();
+        }
         return friends;
     }
 

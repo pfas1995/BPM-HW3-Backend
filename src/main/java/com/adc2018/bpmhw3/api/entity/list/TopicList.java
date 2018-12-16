@@ -3,6 +3,7 @@ package com.adc2018.bpmhw3.api.entity.list;
 import com.adc2018.bpmhw3.api.entity.Topic;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TopicList {
@@ -11,6 +12,9 @@ public class TopicList {
     private List<Topic> topics;
 
     public List<Topic> getTopics() {
+        if(topics == null) {
+            topics = new ArrayList<>();
+        }
         return topics;
     }
 

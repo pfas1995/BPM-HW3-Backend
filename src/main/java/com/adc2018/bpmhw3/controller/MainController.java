@@ -3,6 +3,7 @@ package com.adc2018.bpmhw3.controller;
 
 import com.adc2018.bpmhw3.api.BPMAPI;
 import com.adc2018.bpmhw3.api.BPMFileApi;
+import com.adc2018.bpmhw3.api.entity.FriendGraph;
 import com.adc2018.bpmhw3.api.entity.User;
 import com.adc2018.bpmhw3.api.entity.list.UserList;
 import com.adc2018.bpmhw3.service.BPMService;
@@ -86,7 +87,6 @@ public class MainController {
     @ResponseBody
     public String test(@PathVariable("id") String id, @RequestParam("file") MultipartFile file) {
         return bpmapi.postFileToTopic(id, file);
-//        logger.info(map.toString());
     }
 
 
@@ -99,6 +99,12 @@ public class MainController {
     @ResponseBody
     public byte[] File(@PathVariable("id") String id) {
         return bpmFileApi.getTopicFileById(id);
+    }
+
+    @GetMapping(value = "Friendgraph/{id}")
+    @ResponseBody
+    public FriendGraph friendGraph(@PathVariable("id") String id) {
+        return bpmService.getFriendGraph(id);
     }
 
 

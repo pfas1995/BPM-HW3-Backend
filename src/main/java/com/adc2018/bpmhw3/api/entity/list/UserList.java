@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -16,6 +17,9 @@ public class UserList {
     private List<User> user;
 
     public List<User> getUser() {
+        if(user == null) {
+            user = new ArrayList<>();
+        }
         return user;
     }
 
