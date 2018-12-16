@@ -1,15 +1,22 @@
 package com.adc2018.bpmhw3.api.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.stereotype.Component;
 
 @Component
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class User {
 
     private static final String type = "user";
 
     private String id;
+
+
     private String user_name;
+
+    @JsonProperty("user_pwd")
     private String user_passwd;
     private String role;
 
