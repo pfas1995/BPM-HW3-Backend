@@ -1,4 +1,4 @@
-package com.adc2018.bpmhw3.api;
+package com.adc2018.bpmhw3.api.entity.list;
 
 import com.adc2018.bpmhw3.api.entity.UserCard;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserCardList {
-    @JsonProperty("UserCard")
+    @JsonProperty("Usercard")
     private List<UserCard> usercards;
 
 

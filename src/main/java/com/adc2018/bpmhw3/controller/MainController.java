@@ -3,10 +3,9 @@ package com.adc2018.bpmhw3.controller;
 
 import com.adc2018.bpmhw3.api.BPMAPI;
 import com.adc2018.bpmhw3.api.BPMFileApi;
-import com.adc2018.bpmhw3.api.entity.FriendMap;
-import com.adc2018.bpmhw3.api.entity.User;
-import com.adc2018.bpmhw3.api.entity.list.RecommendList;
-import com.adc2018.bpmhw3.api.entity.list.UserList;
+import com.adc2018.bpmhw3.api.FileUploadAPI;
+import com.adc2018.bpmhw3.api.entity.*;
+import com.adc2018.bpmhw3.api.entity.list.*;
 import com.adc2018.bpmhw3.service.BPMService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,6 +27,9 @@ public class MainController {
 
     @Autowired
     BPMAPI bpmapi = null;
+
+    @Autowired
+    FileUploadAPI fileUploadAPI = null;
 
     @Autowired
     BPMFileApi bpmFileApi = null;
@@ -76,19 +78,25 @@ public class MainController {
      */
     @PostMapping("/User")
     @ResponseBody
-    public User postBody(@RequestBody User user) {
+    public User postUser(@RequestBody User user) {
         return bpmapi.postUser(user);
     }
 
 
     /**
      * 上传图片
-     * @param file
+     * @param map
      */
-    @PostMapping("/Test/{id}")
+    @PostMapping(value = "/Uploadpic/{id}")
     @ResponseBody
-    public String test(@PathVariable("id") String id, @RequestParam("file") MultipartFile file) {
-        return bpmapi.postFileToTopic(id, file);
+    public String test(@PathVariable("id") String id, @RequestParam Map<String, MultipartFile> map) {
+        //("file") MultipartFile file
+        for(String s: map.keySet()) {
+            return fileUploadAPI.postFileToTopic(id, map.get(s));
+        }
+        return "";
+
+//        return fileUploadAPI.postFileToTopic(id, file);
     }
 
 
@@ -117,5 +125,108 @@ public class MainController {
     }
 
 
+    /**
+     * card 查询
+     * @param map
+     * @return
+     */
+    @GetMapping("/Card")
+    @ResponseBody
+    public CardList getCardByQuery(@RequestParam Map<String, Object> map) {
+        return bpmapi.queryCard(map);
+    }
 
+    /**
+     * post 一个 Card
+     * @param card
+     * @return
+     */
+    @PostMapping("/Card")
+    @ResponseBody
+    public Card postCard(@RequestBody Card card) {
+        return bpmapi.postCard(card);
+    }
+    
+    /**
+     *  put 一个 Card
+     * @param id
+     * @param card
+     * @return
+     */
+    @PutMapping("/Card/{id}")
+    @ResponseBody
+    public Card updateCard(@PathVariable("id") String id, @RequestBody Card card) {
+        return bpmapi.putCard(id, card);
+    }
+
+
+    /**
+     * UserCard 查询
+     * @param map
+     * @return
+     */
+    @GetMapping("/Usercard")
+    @ResponseBody
+    public UserCardList getUserCardByQuery(@RequestParam Map<String, Object> map) {
+        return bpmapi.queryUserCard(map);
+    }
+
+    /**
+     * post 一个 UserCard
+     * @param usercard
+     * @return
+     */
+    @PostMapping("/Usercard")
+    @ResponseBody
+    public UserCard postUsercard(@RequestBody UserCard usercard) {
+        return bpmapi.postUserCard(usercard);
+    }
+
+
+    /**
+     * post 一个 Topic
+     * @param Topic
+     * @return
+     */
+    @PostMapping("/Topic")
+    @ResponseBody
+    public Topic postTopic(@RequestBody Topic Topic) {
+        return bpmapi.postTopic(Topic);
+    }
+
+
+    /**
+     * Topic 查询
+     * @param map
+     * @return
+     */
+    @GetMapping("/Topic")
+    @ResponseBody
+    public TopicList getTopicByQuery(@RequestParam Map<String, Object> map) {
+        return bpmapi.queryTopic(map);
+    }
+
+
+    /**
+     * 依据 id 获取一个Topic
+     * @param id
+     * @return
+     */
+    @GetMapping("/Topic/{id}")
+    @ResponseBody
+    public Topic getTopicById(@PathVariable("id") String id) {
+        return bpmapi.getTopicById(id);
+    }
+
+    /**
+     * Friend 查询
+     * @param map
+     * @return
+     */
+    @GetMapping("/Friend")
+    @ResponseBody
+    public FriendList getFriendByQuery(@RequestParam Map<String, Object> map) {
+        return bpmapi.queryFriend(map);
+    }   
+    
 }

@@ -1,12 +1,8 @@
 package com.adc2018.bpmhw3.api;
 
 
-import com.adc2018.bpmhw3.api.entity.Friend;
-import com.adc2018.bpmhw3.api.entity.Topic;
-import com.adc2018.bpmhw3.api.entity.User;
-import com.adc2018.bpmhw3.api.entity.list.FriendList;
-import com.adc2018.bpmhw3.api.entity.list.TopicList;
-import com.adc2018.bpmhw3.api.entity.list.UserList;
+import com.adc2018.bpmhw3.api.entity.*;
+import com.adc2018.bpmhw3.api.entity.list.*;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
@@ -71,7 +67,7 @@ public interface BPMAPI {
     @RequestMapping(method = RequestMethod.PUT, value = "/Topic/{id}")
     public Topic putTopic(@PathVariable("id") String id, @RequestBody Topic topic);
 
-    @RequestMapping(method = RequestMethod.POST, value = "/Topic")
+    @RequestMapping(method = RequestMethod.POST, value = "/Topic", consumes = MediaType.APPLICATION_JSON_VALUE)
     public Topic postTopic(@RequestBody Topic topic);
 
     @RequestMapping(method = RequestMethod.POST, value = "/Topic/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
@@ -91,6 +87,36 @@ public interface BPMAPI {
 
     @RequestMapping(method = RequestMethod.POST, value = "/Friend")
     public Friend postFriend(@RequestBody Friend Friend);
+
+
+    /** card 请求 **/
+    @RequestMapping(method = RequestMethod.GET, value = "/Card/{id}")
+    public Card getCardById(@PathVariable("id") String id);
+
+    @RequestMapping(method = RequestMethod.GET, value = "/Card")
+    public CardList queryCard(@RequestParam Map<String, Object> queryMap);
+
+    @RequestMapping(method = RequestMethod.PUT, value = "/Card/{id}")
+    public Card putCard(@PathVariable("id") String id, @RequestBody Card Card);
+
+    @RequestMapping(method = RequestMethod.POST, value = "/Card")
+    public Card postCard(@RequestBody Card Card);
+
+
+
+    /** UserCard 请求 **/
+    @RequestMapping(method = RequestMethod.GET, value = "/Usercard/{id}")
+    public UserCard getUserCardById(@PathVariable("id") String id);
+
+    @RequestMapping(method = RequestMethod.GET, value = "/Usercard")
+    public UserCardList queryUserCard(@RequestParam Map<String, Object> queryMap);
+
+    @RequestMapping(method = RequestMethod.PUT, value = "/Usercard/{id}")
+    public UserCard putUserCard(@PathVariable("id") String id, @RequestBody UserCard UserCard);
+
+    @RequestMapping(method = RequestMethod.POST, value = "/Usercard")
+    public UserCard postUserCard(@RequestBody UserCard UserCard);
+
 
 
 }
