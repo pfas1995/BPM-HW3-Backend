@@ -14,6 +14,8 @@ public class FriendMap {
     private User root;
     private Map<User, Set<User>> map;
 
+    private List<UserMap> userMaps;
+
     public User getRoot() {
         return root;
     }
@@ -22,14 +24,17 @@ public class FriendMap {
         this.root = root;
     }
 
-    public Map<User, Set<User>> getMap() {
-        return map;
-    }
-
     public void setMap(Map<User, Set<User>> map) {
         this.map = map;
     }
 
+    public List<UserMap> getUserMaps() {
+        List<UserMap> userMaps = new ArrayList<>();
+        for(User u: map.keySet()) {
+            userMaps.add(UserMap.Factory(u, map.get(u)));
+        }
+        return userMaps;
+    }
 
 
     private Set<User> set = null;
