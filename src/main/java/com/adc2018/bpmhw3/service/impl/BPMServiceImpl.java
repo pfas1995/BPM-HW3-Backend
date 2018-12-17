@@ -3,6 +3,7 @@ package com.adc2018.bpmhw3.service.impl;
 import com.adc2018.bpmhw3.api.BPMAPI;
 import com.adc2018.bpmhw3.api.entity.Friend;
 import com.adc2018.bpmhw3.api.entity.FriendGraph;
+import com.adc2018.bpmhw3.api.entity.FriendMap;
 import com.adc2018.bpmhw3.api.entity.User;
 import com.adc2018.bpmhw3.api.entity.list.FriendList;
 import com.adc2018.bpmhw3.service.BPMService;
@@ -38,7 +39,7 @@ public class BPMServiceImpl implements BPMService {
      * @return
      */
     @Override
-    public FriendGraph getFriendGraph(String uid) {
+    public FriendMap getFriendGraph(String uid) {
         FriendGraph friendGraph = new FriendGraph();
         User user = api.getUserById(uid);
         friendGraph.setUser(user);
@@ -59,7 +60,6 @@ public class BPMServiceImpl implements BPMService {
 
         friendGraph.setLevel1(level1);
         friendGraph.setLevel2(level2);
-
-        return friendGraph;
+        return friendGraph.friendMap();
     }
 }

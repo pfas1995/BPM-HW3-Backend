@@ -3,7 +3,7 @@ package com.adc2018.bpmhw3.controller;
 
 import com.adc2018.bpmhw3.api.BPMAPI;
 import com.adc2018.bpmhw3.api.BPMFileApi;
-import com.adc2018.bpmhw3.api.entity.FriendGraph;
+import com.adc2018.bpmhw3.api.entity.FriendMap;
 import com.adc2018.bpmhw3.api.entity.User;
 import com.adc2018.bpmhw3.api.entity.list.UserList;
 import com.adc2018.bpmhw3.service.BPMService;
@@ -101,9 +101,9 @@ public class MainController {
         return bpmFileApi.getTopicFileById(id);
     }
 
-    @GetMapping(value = "Friendgraph/{id}")
+    @GetMapping(value = "Friendmap/{id}")
     @ResponseBody
-    public FriendGraph friendGraph(@PathVariable("id") String id) {
+    public FriendMap friendMap(@PathVariable("id") String id) {
         return bpmService.getFriendGraph(id);
     }
 

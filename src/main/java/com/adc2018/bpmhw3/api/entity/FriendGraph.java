@@ -1,6 +1,6 @@
 package com.adc2018.bpmhw3.api.entity;
 
-import java.util.List;
+import java.util.*;
 
 public class FriendGraph {
 
@@ -38,6 +38,36 @@ public class FriendGraph {
 
     public void setLevel2(List<List<User>> level2) {
         this.level2 = level2;
+    }
+
+
+    public FriendMap friendMap() {
+        FriendMap friendMap = new FriendMap();
+        Map<User, Set<User>> map = new HashMap<>();
+        friendMap.setRoot(user);
+        Set<User> set = null;
+        for(User u: level1) {
+             set = map.getOrDefault(user, new HashSet<>());
+             set.add(u);
+             map.put(user, set);
+             set = map.getOrDefault(u, new HashSet<>());
+             set.add(user);
+             map.put(u, set);
+        }
+        for(int i = 0; i < level1.size(); i++) {
+            User key = level1.get(i);
+            List<User> list = level2.get(i);
+            for(User u : list) {
+                set = map.getOrDefault(key, new HashSet<>());
+                set.add(u);
+                map.put(key, set);
+                set = map.getOrDefault(u, new HashSet<>());
+                set.add(key);
+                map.put(u, set);
+            }
+        }
+        friendMap.setMap(map);
+        return friendMap;
     }
 
     @Override

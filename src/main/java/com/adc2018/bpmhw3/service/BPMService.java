@@ -1,8 +1,8 @@
 package com.adc2018.bpmhw3.service;
 
-import com.adc2018.bpmhw3.api.entity.FriendGraph;
+import com.adc2018.bpmhw3.api.entity.FriendMap;
 
 public interface BPMService {
 
-    public FriendGraph getFriendGraph(String uid);
+    public FriendMap getFriendGraph(String uid);
 }
