@@ -19,6 +19,7 @@ import java.util.Map;
 
 
 @RestController
+@CrossOrigin
 public class MainController {
 
     private static final Logger logger = LoggerFactory.getLogger(MainController.class);
