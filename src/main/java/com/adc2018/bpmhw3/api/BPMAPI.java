@@ -75,7 +75,7 @@ public interface BPMAPI {
     public Topic postTopic(@RequestBody Topic topic);
 
     @RequestMapping(method = RequestMethod.POST, value = "/Topic/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public String postFileToTopic(@PathVariable("id") String id, @RequestParam("") MultipartFile file);
+    public String postFileToTopic(@PathVariable("id") String id, @RequestParam("file") MultipartFile file);
 
 
 

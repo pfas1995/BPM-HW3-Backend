@@ -1,8 +1,5 @@
 package com.adc2018.bpmhw3;
 
-import com.adc2018.bpmhw3.service.BPMService;
-import com.adc2018.bpmhw3.service.impl.BPMServiceImpl;
-import com.sun.glass.ui.Application;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;

@@ -17,7 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Map;
 
-
+@CrossOrigin
 @RestController
 public class MainController {
 
@@ -37,6 +37,7 @@ public class MainController {
      * @param id
      * @return
      */
+
     @GetMapping("/User/{id}")
     @ResponseBody
     public User getUserById(@PathVariable("id") String id) {
