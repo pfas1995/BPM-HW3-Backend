@@ -8,7 +8,7 @@ public class Topic {
     private String id;
     private String text;
     private String user_id;
-    private String create_time;
+    private Long create_time;
     private String image;
 
     public static String getType() {
@@ -39,11 +39,11 @@ public class Topic {
         this.user_id = user_id;
     }
 
-    public String getCreate_time() {
+    public Long getCreate_time() {
         return create_time;
     }
 
-    public void setCreate_time(String create_time) {
+    public void setCreate_time(Long create_time) {
         this.create_time = create_time;
     }
 
