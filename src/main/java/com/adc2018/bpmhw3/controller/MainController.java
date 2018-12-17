@@ -5,6 +5,7 @@ import com.adc2018.bpmhw3.api.BPMAPI;
 import com.adc2018.bpmhw3.api.BPMFileApi;
 import com.adc2018.bpmhw3.api.entity.FriendMap;
 import com.adc2018.bpmhw3.api.entity.User;
+import com.adc2018.bpmhw3.api.entity.list.RecommendList;
 import com.adc2018.bpmhw3.api.entity.list.UserList;
 import com.adc2018.bpmhw3.service.BPMService;
 import org.slf4j.Logger;
@@ -101,11 +102,19 @@ public class MainController {
         return bpmFileApi.getTopicFileById(id);
     }
 
-    @GetMapping(value = "Friendmap/{id}")
+    @GetMapping(value = "/Friendmap/{id}")
     @ResponseBody
     public FriendMap friendMap(@PathVariable("id") String id) {
         return bpmService.getFriendGraph(id);
     }
+
+
+    @GetMapping(value = "/Recommend/{id}")
+    @ResponseBody
+    public RecommendList recommendFriend(@PathVariable("id") String id) {
+        return bpmService.recommendFriend(id);
+    }
+
 
 
 }

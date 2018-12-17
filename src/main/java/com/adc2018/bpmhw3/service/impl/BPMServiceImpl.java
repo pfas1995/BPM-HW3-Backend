@@ -1,11 +1,9 @@
 package com.adc2018.bpmhw3.service.impl;
 
 import com.adc2018.bpmhw3.api.BPMAPI;
-import com.adc2018.bpmhw3.api.entity.Friend;
-import com.adc2018.bpmhw3.api.entity.FriendGraph;
-import com.adc2018.bpmhw3.api.entity.FriendMap;
-import com.adc2018.bpmhw3.api.entity.User;
+import com.adc2018.bpmhw3.api.entity.*;
 import com.adc2018.bpmhw3.api.entity.list.FriendList;
+import com.adc2018.bpmhw3.api.entity.list.RecommendList;
 import com.adc2018.bpmhw3.service.BPMService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -60,6 +58,13 @@ public class BPMServiceImpl implements BPMService {
 
         friendGraph.setLevel1(level1);
         friendGraph.setLevel2(level2);
-        return friendGraph.friendMap();
+        FriendMap friendMap = friendGraph.friendMap();
+        return friendMap;
+    }
+
+    @Override
+    public RecommendList recommendFriend(String uid) {
+        FriendMap friendMap = this.getFriendGraph(uid);
+        return friendMap.recommend();
     }
 }
