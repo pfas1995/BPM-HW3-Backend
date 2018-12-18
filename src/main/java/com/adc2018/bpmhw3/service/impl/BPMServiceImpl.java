@@ -4,6 +4,7 @@ import com.adc2018.bpmhw3.api.BPMAPI;
 import com.adc2018.bpmhw3.api.entity.*;
 import com.adc2018.bpmhw3.api.entity.list.FriendList;
 import com.adc2018.bpmhw3.api.entity.list.RecommendList;
+import com.adc2018.bpmhw3.api.entity.list.ShareCardList;
 import com.adc2018.bpmhw3.api.entity.list.UserCardList;
 import com.adc2018.bpmhw3.service.BPMService;
 import org.slf4j.Logger;
@@ -72,10 +73,21 @@ public class BPMServiceImpl implements BPMService {
     @Override
     public ShareCard shareCard(String fromId, String toId) {
         Map<String, Object> queryMap = new HashMap<>();
-        queryMap.put("Usercard.user.id", fromId);
         User user = api.getUserById(toId);
+        queryMap.put("Usercard.user.id", fromId);
         UserCardList userCardList = api.queryUserCard(queryMap);
         Card card = userCardList.getUserCards().get(0).getCard();
-        return api.postShareCard(ShareCard.Factory(user, card));
+
+        queryMap.clear();
+        queryMap.put("Sharecard.to_user.id", user.getId());
+        queryMap.put("Sharecard.cards.id", card.getId());
+        ShareCardList shareCardList = api.queryShareCard(queryMap);
+        List<ShareCard> shareCards = shareCardList.getShareCards();
+        if(shareCards.isEmpty()) {
+            return api.postShareCard(ShareCard.Factory(user, card));
+        }
+        else {
+            return shareCards.get(0);
+        }
     }
 }

@@ -121,6 +121,9 @@ public interface BPMAPI {
     @RequestMapping(method = RequestMethod.POST, value = "/Sharecard")
     public ShareCard postShareCard(@RequestBody ShareCard sharecard);
 
+    @RequestMapping(method = RequestMethod.GET, value = "/Sharecard")
+    public ShareCardList queryShareCard(@RequestParam Map<String, Object> queryMap);
+
 
 
 }

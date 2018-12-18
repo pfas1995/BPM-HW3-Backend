@@ -11,8 +11,6 @@ public class EcardApplication {
 
 	public static void main(String[] args) {
 		ConfigurableApplicationContext ctx = SpringApplication.run(EcardApplication.class, args);
-//		BPMService service = ctx.getBean(BPMServiceImpl.class);
-//		service.getAllUser();
 	}
 
 }
