@@ -117,6 +117,10 @@ public interface BPMAPI {
     @RequestMapping(method = RequestMethod.POST, value = "/Usercard")
     public UserCard postUserCard(@RequestBody UserCard UserCard);
 
+    /** Sharecard **/
+    @RequestMapping(method = RequestMethod.POST, value = "/Sharecard")
+    public ShareCard postShareCard(@RequestBody ShareCard sharecard);
+
 
 
 }

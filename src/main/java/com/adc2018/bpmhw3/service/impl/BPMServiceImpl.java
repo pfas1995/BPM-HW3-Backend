@@ -4,6 +4,7 @@ import com.adc2018.bpmhw3.api.BPMAPI;
 import com.adc2018.bpmhw3.api.entity.*;
 import com.adc2018.bpmhw3.api.entity.list.FriendList;
 import com.adc2018.bpmhw3.api.entity.list.RecommendList;
+import com.adc2018.bpmhw3.api.entity.list.UserCardList;
 import com.adc2018.bpmhw3.service.BPMService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -66,5 +67,15 @@ public class BPMServiceImpl implements BPMService {
     public RecommendList recommendFriend(String uid) {
         FriendMap friendMap = this.getFriendGraph(uid);
         return friendMap.recommend();
+    }
+
+    @Override
+    public ShareCard shareCard(String fromId, String toId) {
+        Map<String, Object> queryMap = new HashMap<>();
+        queryMap.put("Usercard.user.id", fromId);
+        User user = api.getUserById(toId);
+        UserCardList userCardList = api.queryUserCard(queryMap);
+        Card card = userCardList.getUserCards().get(0).getCard();
+        return api.postShareCard(ShareCard.Factory(user, card));
     }
 }

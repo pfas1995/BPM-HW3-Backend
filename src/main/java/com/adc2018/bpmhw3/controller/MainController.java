@@ -1,6 +1,7 @@
 package com.adc2018.bpmhw3.controller;
 
 
+import com.adc2018.bpmhw3.RequestBody.Share;
 import com.adc2018.bpmhw3.api.BPMAPI;
 import com.adc2018.bpmhw3.api.BPMFileApi;
 import com.adc2018.bpmhw3.api.FileUploadAPI;
@@ -227,6 +228,17 @@ public class MainController {
     @ResponseBody
     public FriendList getFriendByQuery(@RequestParam Map<String, Object> map) {
         return bpmapi.queryFriend(map);
-    }   
+    }
+
+    /**
+     * 向被推荐人分享自己的名片
+     * @param share
+     * @return
+     */
+    @PostMapping("/Sharecard")
+    @ResponseBody
+    public ShareCard shareCard(@RequestBody Share share) {
+        return bpmService.shareCard(share.getFromUser(), share.getToUser());
+    }
     
 }
